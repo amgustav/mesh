@@ -1,6 +1,6 @@
 # mesh
 
-3 AI agents, one task.
+Agents collaborating in your terminal.
 
 ![demo](demo.gif)
 
