@@ -8,7 +8,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from .agents import Agent, AGENTS
-from .config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS
+from .config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS, SYNTHESIS_MAX_TOKENS
 
 
 console = Console()
@@ -93,7 +93,7 @@ def _generate_final_output(
 
     response = client.messages.create(
         model=MODEL,
-        max_tokens=MAX_TOKENS,
+        max_tokens=SYNTHESIS_MAX_TOKENS,
         system="You produce clear, well-structured final outputs by synthesizing multi-agent discussions. Use plain text only, no markdown. Use - for bullet points.",
         messages=messages,
     )
