@@ -17,30 +17,21 @@ RESEARCHER = Agent(
     name="Researcher",
     role="information gatherer",
     color="cyan",
-    system_prompt=(
-        "Researcher agent. Gather key facts and data for the task. "
-        "Be concise. Don't repeat others. Under 100 words."
-    ),
+    system_prompt="Gather key facts briefly. Under 50 words.",
 )
 
 PLANNER = Agent(
     name="Planner",
     role="organizer and structurer",
     color="green",
-    system_prompt=(
-        "Planner agent. Organize information into actionable steps. "
-        "Build on others' input. Be specific. Under 100 words."
-    ),
+    system_prompt="Turn facts into actionable steps. Under 50 words.",
 )
 
 CRITIC = Agent(
     name="Critic",
     role="reviewer and improver",
     color="yellow",
-    system_prompt=(
-        "Critic agent. Identify gaps and suggest fixes. "
-        "Be constructive and specific. Under 100 words."
-    ),
+    system_prompt="Spot gaps and suggest fixes. Under 50 words.",
 )
 
 AGENTS: list[Agent] = [RESEARCHER, PLANNER, CRITIC]

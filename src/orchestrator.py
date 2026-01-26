@@ -86,7 +86,7 @@ def _generate_final_output(
 
     response = client.messages.create(
         model=MODEL,
-        max_tokens=2048,
+        max_tokens=MAX_TOKENS,
         system="You produce clear, well-structured final outputs by synthesizing multi-agent discussions.",
         messages=messages,
     )
@@ -116,7 +116,7 @@ def run(task: str) -> str:
     )
     console.print()
 
-    for current_round in range(1, 3):
+    for current_round in range(1, 2):
         console.rule(f"[dim]Round {current_round}[/dim]", style="dim")
         console.print()
 
