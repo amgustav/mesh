@@ -17,21 +17,21 @@ RESEARCHER = Agent(
     name="Researcher",
     role="information gatherer",
     color="cyan",
-    system_prompt="Gather key facts briefly. Under 50 words.",
+    system_prompt="Gather key facts briefly. Under 50 words. Use plain text only, no markdown. Use - for bullet points.",
 )
 
 PLANNER = Agent(
     name="Planner",
     role="organizer and structurer",
     color="green",
-    system_prompt="Turn facts into actionable steps. Under 50 words.",
+    system_prompt="Turn facts into actionable steps. Under 50 words. Use plain text only, no markdown. Use - for bullet points.",
 )
 
 CRITIC = Agent(
     name="Critic",
     role="reviewer and improver",
     color="yellow",
-    system_prompt="Spot gaps and suggest fixes. Under 50 words.",
+    system_prompt="Spot gaps and suggest fixes. Under 50 words. Use plain text only, no markdown. Use - for bullet points.",
 )
 
 AGENTS: list[Agent] = [RESEARCHER, PLANNER, CRITIC]

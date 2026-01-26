@@ -1,5 +1,7 @@
 """Orchestrator — coordinates agent communication and turn-taking."""
 
+import re
+
 import anthropic
 from rich.console import Console
 from rich.panel import Panel
@@ -10,6 +12,11 @@ from .config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS
 
 
 console = Console()
+
+
+def _strip_markdown_bold(text: str) -> str:
+    """Remove **bold** markers from text for clean terminal output."""
+    return re.sub(r"\*\*(.+?)\*\*", r"\1", text)
 
 
 def _build_messages(
@@ -57,7 +64,7 @@ def _call_agent(
         messages=messages,
     )
 
-    return response.content[0].text
+    return _strip_markdown_bold(response.content[0].text)
 
 
 def _generate_final_output(
@@ -87,11 +94,11 @@ def _generate_final_output(
     response = client.messages.create(
         model=MODEL,
         max_tokens=MAX_TOKENS,
-        system="You produce clear, well-structured final outputs by synthesizing multi-agent discussions.",
+        system="You produce clear, well-structured final outputs by synthesizing multi-agent discussions. Use plain text only, no markdown. Use - for bullet points.",
         messages=messages,
     )
 
-    return response.content[0].text
+    return _strip_markdown_bold(response.content[0].text)
 
 
 def run(task: str) -> str:
