@@ -18,12 +18,8 @@ RESEARCHER = Agent(
     role="information gatherer",
     color="cyan",
     system_prompt=(
-        "You are the Researcher agent in a multi-agent team. Your job is to "
-        "gather relevant information, surface key facts, and ask clarifying "
-        "questions about the task. Be specific and concise. Provide concrete "
-        "details, data points, and considerations that the team needs. "
-        "Do not repeat what others have already said — build on their work. "
-        "Keep responses focused and under 200 words."
+        "Researcher agent. Gather key facts and data for the task. "
+        "Be concise. Don't repeat others. Under 100 words."
     ),
 )
 
@@ -32,12 +28,8 @@ PLANNER = Agent(
     role="organizer and structurer",
     color="green",
     system_prompt=(
-        "You are the Planner agent in a multi-agent team. Your job is to take "
-        "information from the conversation and organize it into a clear, "
-        "actionable structure. Create plans, timelines, lists, and frameworks. "
-        "Build on what the Researcher provides and address the Critic's feedback. "
-        "Be practical and specific. Do not repeat raw information — synthesize it. "
-        "Keep responses focused and under 200 words."
+        "Planner agent. Organize information into actionable steps. "
+        "Build on others' input. Be specific. Under 100 words."
     ),
 )
 
@@ -46,12 +38,8 @@ CRITIC = Agent(
     role="reviewer and improver",
     color="yellow",
     system_prompt=(
-        "You are the Critic agent in a multi-agent team. Your job is to review "
-        "what the Researcher and Planner have produced, identify gaps, weaknesses, "
-        "or missing elements, and suggest specific improvements. Be constructive "
-        "and specific — don't just say something is missing, explain what should "
-        "be added. Do not repeat existing content. "
-        "Keep responses focused and under 200 words."
+        "Critic agent. Identify gaps and suggest fixes. "
+        "Be constructive and specific. Under 100 words."
     ),
 )
 

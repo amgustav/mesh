@@ -6,7 +6,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from agents import Agent, AGENTS
-from config import ANTHROPIC_API_KEY, MODEL, MAX_ROUNDS, MAX_TOKENS
+from config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS
 
 
 console = Console()
@@ -94,48 +94,6 @@ def _generate_final_output(
     return response.content[0].text
 
 
-def _should_stop(
-    client: anthropic.Anthropic,
-    task: str,
-    history: list[dict[str, str]],
-    current_round: int,
-) -> bool:
-    """Ask the orchestrator LLM whether the conversation has reached consensus."""
-    if current_round >= MAX_ROUNDS:
-        return True
-    if current_round < 2:
-        return False
-
-    conversation_text = ""
-    for entry in history:
-        conversation_text += f"[{entry['agent']}]: {entry['content']}\n\n"
-
-    messages = [
-        {
-            "role": "user",
-            "content": (
-                f"TASK: {task}\n\n"
-                f"Conversation so far:\n{conversation_text}\n"
-                "Has this conversation sufficiently addressed the task? "
-                "Are there still significant gaps or unresolved issues?\n\n"
-                "Reply with exactly YES if the task is well-covered and the agents "
-                "have reached a solid result. Reply with exactly NO if more "
-                "discussion is needed."
-            ),
-        }
-    ]
-
-    response = client.messages.create(
-        model=MODEL,
-        max_tokens=16,
-        system="You are a conversation moderator. Reply with only YES or NO.",
-        messages=messages,
-    )
-
-    answer = response.content[0].text.strip().upper()
-    return answer.startswith("YES")
-
-
 def run(task: str) -> str:
     """Run the multi-agent orchestration loop and return the final output."""
     if not ANTHROPIC_API_KEY:
@@ -158,10 +116,7 @@ def run(task: str) -> str:
     )
     console.print()
 
-    current_round = 0
-
-    while current_round < MAX_ROUNDS:
-        current_round += 1
+    for current_round in range(1, 3):
         console.rule(f"[dim]Round {current_round}[/dim]", style="dim")
         console.print()
 
@@ -186,10 +141,6 @@ def run(task: str) -> str:
             console.print()
 
             history.append({"agent": agent.name, "content": response_text})
-
-        # Check if we should stop
-        if _should_stop(client, task, history, current_round):
-            break
 
     # Generate final output
     console.print()
