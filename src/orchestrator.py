@@ -5,8 +5,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-from agents import Agent, AGENTS
-from config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS
+from .agents import Agent, AGENTS
+from .config import ANTHROPIC_API_KEY, MODEL, MAX_TOKENS
 
 
 console = Console()

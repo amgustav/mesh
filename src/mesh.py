@@ -4,7 +4,7 @@ import sys
 
 from rich.console import Console
 
-import orchestrator
+from . import orchestrator
 
 console = Console()
 

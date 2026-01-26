@@ -10,6 +10,25 @@ mesh is a terminal-based demo that shows multiple AI agents collaborating on a t
 
 This demonstrates **multi-agent coordination**: AI collaboration, not replacement.
 
+## Project structure
+
+```
+mesh/
+├── src/
+│   ├── __init__.py
+│   ├── mesh.py          # CLI entry point
+│   ├── agents.py        # Agent definitions
+│   ├── orchestrator.py  # Coordination logic
+│   └── config.py        # Configuration
+├── tests/
+│   ├── __init__.py
+│   ├── test_agents.py
+│   └── test_orchestrator.py
+├── requirements.txt
+├── .env.example
+└── README.md
+```
+
 ## Install
 
 ```bash
@@ -21,15 +40,21 @@ cp .env.example .env
 ## Usage
 
 ```bash
-python mesh.py "plan a weekend trip to Tokyo"
+python3 -m src.mesh "plan a weekend trip to Tokyo"
 ```
 
 ```bash
-python mesh.py "compare React vs Svelte for a small project"
+python3 -m src.mesh "compare React vs Svelte for a small project"
 ```
 
 ```bash
-python mesh.py "design a morning routine for productivity"
+python3 -m src.mesh "design a morning routine for productivity"
+```
+
+## Running tests
+
+```bash
+python3 -m pytest tests/
 ```
 
 ## How it works
@@ -39,9 +64,8 @@ python mesh.py "design a morning routine for productivity"
    - **Researcher** (cyan) — gathers information, surfaces key facts
    - **Planner** (green) — organizes and structures the output
    - **Critic** (yellow) — reviews, finds gaps, suggests improvements
-3. Agents take turns in rounds, each seeing the full conversation history
-4. An orchestrator decides when the task is sufficiently addressed (or after 10 rounds max)
-5. A final consolidated output synthesizes the best of all contributions
+3. Agents take turns over 2 rounds, each seeing the full conversation history
+4. A final consolidated output synthesizes the best of all contributions
 
 ## Requirements
 
