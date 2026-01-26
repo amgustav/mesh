@@ -1,33 +1,14 @@
 # mesh
 
-Multi-agent AI coordination in your terminal.
+3 AI agents arguing about your problems.
 
 ![demo](demo.gif)
 
 ## What is this?
 
-mesh is a terminal-based demo that shows multiple AI agents collaborating on a task together. Instead of one AI doing everything, three specialized agents — Researcher, Planner, and Critic — work together through visible conversation rounds to produce a better result.
+I wanted to see what happens when you give three AI agents different jobs and let them talk to each other. Turns out they actually catch each other's mistakes and build on each other's ideas. It's fun to watch.
 
-This demonstrates **multi-agent coordination**: AI collaboration, not replacement.
-
-## Project structure
-
-```
-mesh/
-├── src/
-│   ├── __init__.py
-│   ├── mesh.py          # CLI entry point
-│   ├── agents.py        # Agent definitions
-│   ├── orchestrator.py  # Coordination logic
-│   └── config.py        # Configuration
-├── tests/
-│   ├── __init__.py
-│   ├── test_agents.py
-│   └── test_orchestrator.py
-├── requirements.txt
-├── .env.example
-└── README.md
-```
+You type a question, and a Researcher, Planner, and Critic go back and forth for a couple rounds in your terminal. Then you get a final answer that's better than what any single agent would've come up with.
 
 ## Install
 
@@ -41,31 +22,19 @@ cp .env.example .env
 
 ```bash
 python3 -m src.mesh "plan a weekend trip to Tokyo"
-```
-
-```bash
 python3 -m src.mesh "compare React vs Svelte for a small project"
-```
-
-```bash
 python3 -m src.mesh "design a morning routine for productivity"
-```
-
-## Running tests
-
-```bash
-python3 -m pytest tests/
 ```
 
 ## How it works
 
-1. You provide a task as a CLI argument
-2. Three agents activate, each with a distinct role:
-   - **Researcher** (cyan) — gathers information, surfaces key facts
-   - **Planner** (green) — organizes and structures the output
-   - **Critic** (yellow) — reviews, finds gaps, suggests improvements
-3. Agents take turns over 2 rounds, each seeing the full conversation history
-4. A final consolidated output synthesizes the best of all contributions
+1. You give it a task
+2. Three agents take turns over 2 rounds:
+   - **Researcher** (cyan) — digs up relevant info
+   - **Planner** (green) — structures everything
+   - **Critic** (yellow) — pokes holes, suggests fixes
+3. Each agent sees the full conversation so far
+4. You get a final combined answer at the end
 
 ## Requirements
 
