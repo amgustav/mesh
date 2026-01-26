@@ -10,4 +10,4 @@ ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "")
 MODEL: str = "claude-sonnet-4-20250514"
 MAX_ROUNDS: int = 1
 MAX_TOKENS: int = 150
-SYNTHESIS_MAX_TOKENS: int = 300
+SYNTHESIS_MAX_TOKENS: int = 350

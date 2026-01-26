@@ -94,7 +94,7 @@ def _generate_final_output(
     response = client.messages.create(
         model=MODEL,
         max_tokens=SYNTHESIS_MAX_TOKENS,
-        system="You produce clear, well-structured final outputs by synthesizing multi-agent discussions. Use plain text only, no markdown. Use - for bullet points.",
+        system="You produce clear, well-structured final outputs by synthesizing multi-agent discussions. Use plain text only, no markdown. Use - for bullet points. Keep your response brief and complete all sentences.",
         messages=messages,
     )
 
