@@ -1,14 +1,12 @@
 # mesh
 
-3 AI agents arguing about your problems.
+3 AI agents, one task.
 
 ![demo](demo.gif)
 
 ## What is this?
 
-I wanted to see what happens when you give three AI agents different jobs and let them talk to each other. They end up building on each other's ideas pretty well.
-
-You type a question, and a Researcher, Planner, and Critic go back and forth for a couple rounds in your terminal. The final answer comes out better than what any single agent would've come up with.
+I wanted to see what happens when you give three AI agents different jobs and let them talk to each other. You give it a task, a Researcher, Planner, and Critic discuss it for a couple rounds in your terminal, and you get the output.
 
 ## Install
 
